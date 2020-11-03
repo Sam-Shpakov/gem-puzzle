@@ -1,2 +1,1 @@
-# gem-puzzle
-gem-puzzle
+## [gem-puzzle](https://skaymant-gem-puzzle.netlify.app/)
