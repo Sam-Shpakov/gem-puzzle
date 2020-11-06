@@ -29,7 +29,7 @@ export const Instruction: React.FC<Props> = ({ size }) => {
             marginBottom: '3px',
           }}
         />
-        <Space size={size}>
+        <Space size={2}>
           <LeftCircleOutlined
             style={{ fontSize: `${fontSize}px`, color: colorIcon }}
           />
