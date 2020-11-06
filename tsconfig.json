@@ -17,5 +17,6 @@
     "noImplicitAny": false,
     "jsx": "react"
   },
+  "typeRoots": ["../node_modules/@types", "../@types"],
   "include": ["src"]
 }
