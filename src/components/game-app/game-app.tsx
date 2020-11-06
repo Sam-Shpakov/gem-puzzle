@@ -8,11 +8,11 @@ import Header from '../header';
 import Instruction from '../instruction';
 
 type Props = {
-  // article: IArticle;
+  size: number;
   // removeArticle: (article: IArticle) => void;
 };
 
-export const GameApp: React.FC<Props> = (/*{ article, removeArticle }*/) => {
+export const GameApp: React.FC<Props> = ({ size }) => {
   // const dispatch: Dispatch<any> = useDispatch();
 
   // const deleteArticle = React.useCallback(
@@ -24,7 +24,7 @@ export const GameApp: React.FC<Props> = (/*{ article, removeArticle }*/) => {
     <div className="game-app">
       <Header />
       <Game />
-      <Instruction />
+      <Instruction size={size} />
     </div>
   );
 };

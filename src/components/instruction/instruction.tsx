@@ -1,25 +1,46 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
-
 import './instruction.scss';
+import { Typography, Space } from 'antd';
+import {
+  LeftCircleOutlined,
+  DownCircleOutlined,
+  UpCircleOutlined,
+  RightCircleOutlined,
+} from '@ant-design/icons';
 
 type Props = {
-  // article: IArticle;
-  // removeArticle: (article: IArticle) => void;
+  size: number;
 };
 
-export const Instruction: React.FC<Props> = (/*{ article, removeArticle }*/) => {
-  // const dispatch: Dispatch<any> = useDispatch();
-
-  // const deleteArticle = React.useCallback(
-  //   (article: IArticle) => dispatch(removeArticle(article)),
-  //   [dispatch, removeArticle]
-  // );
-
+export const Instruction: React.FC<Props> = ({ size }) => {
+  const { Title } = Typography;
+  const fontSize = 36;
+  const colorIcon = '#595959';
   return (
     <div className="instruction">
-      <h2>This is Instruction</h2>
+      <Title level={4}>
+        Move tiles in grid to order them from 1 to {size * size - 1}
+      </Title>
+      <div className="instruction__icons">
+        <UpCircleOutlined
+          style={{
+            fontSize: `${fontSize}px`,
+            color: colorIcon,
+            marginBottom: '3px',
+          }}
+        />
+        <Space size={2}>
+          <LeftCircleOutlined
+            style={{ fontSize: `${fontSize}px`, color: colorIcon }}
+          />
+          <DownCircleOutlined
+            style={{ fontSize: `${fontSize}px`, color: colorIcon }}
+          />
+          <RightCircleOutlined
+            style={{ fontSize: `${fontSize}px`, color: colorIcon }}
+          />
+        </Space>
+      </div>
     </div>
   );
 };

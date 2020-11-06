@@ -14,13 +14,13 @@ const App: React.FC = () => {
   return (
     <Tabs defaultActiveKey="2" centered>
       <TabPane tab="3x3" key="1">
-        <GameApp />
+        <GameApp size={3} />
       </TabPane>
       <TabPane tab="4x4" key="2">
-        <GameApp />
+        <GameApp size={4} />
       </TabPane>
       <TabPane tab="8x8" key="3">
-        <GameApp />
+        <GameApp size={8} />
       </TabPane>
     </Tabs>
   );
