@@ -1,25 +1,13 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { Typography } from 'antd';
 
 import './header.scss';
 
-type Props = {
-  // article: IArticle;
-  // removeArticle: (article: IArticle) => void;
-};
-
-export const Header: React.FC<Props> = (/*{ article, removeArticle }*/) => {
-  // const dispatch: Dispatch<any> = useDispatch();
-
-  // const deleteArticle = React.useCallback(
-  //   (article: IArticle) => dispatch(removeArticle(article)),
-  //   [dispatch, removeArticle]
-  // );
-
+export const Header: React.FC = () => {
+  const { Title } = Typography;
   return (
     <div className="header">
-      <h2>This is header</h2>
+      <Title>Gem puzzle</Title>
     </div>
   );
 };
