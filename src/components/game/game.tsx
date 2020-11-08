@@ -1,25 +1,23 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
 
 import './game.scss';
 
+import Score from '../score';
+import GameContainer from '../game-container';
+import Controls from '../controls';
+
 type Props = {
-  // article: IArticle;
-  // removeArticle: (article: IArticle) => void;
+  board: number[][];
+  pos: number[];
+  move: () => void;
 };
 
-export const Game: React.FC<Props> = (/*{ article, removeArticle }*/) => {
-  // const dispatch: Dispatch<any> = useDispatch();
-
-  // const deleteArticle = React.useCallback(
-  //   (article: IArticle) => dispatch(removeArticle(article)),
-  //   [dispatch, removeArticle]
-  // );
-
+export const Game: React.FC<Props> = ({ board, pos, move }) => {
   return (
     <div className="game">
-      <h2>This game</h2>
+      <Score score={0} />
+      <GameContainer board={board} pos={pos} move={move} />
+      <Controls isGame={false} />
     </div>
   );
 };

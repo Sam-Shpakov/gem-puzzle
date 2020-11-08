@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
 
 import './game-app.scss';
 import Game from '../game';
@@ -9,21 +7,18 @@ import Instruction from '../instruction';
 
 type Props = {
   size: number;
-  // removeArticle: (article: IArticle) => void;
+  board: number[][];
 };
 
-export const GameApp: React.FC<Props> = ({ size }) => {
-  // const dispatch: Dispatch<any> = useDispatch();
-
-  // const deleteArticle = React.useCallback(
-  //   (article: IArticle) => dispatch(removeArticle(article)),
-  //   [dispatch, removeArticle]
-  // );
+export const GameApp: React.FC<Props> = ({ size, board }) => {
+  const move = () => {
+    console.log('move');
+  };
 
   return (
     <div className="game-app">
       <Header />
-      <Game />
+      <Game board={board} pos={board[0]} move={move} />
       <Instruction size={size} />
     </div>
   );
