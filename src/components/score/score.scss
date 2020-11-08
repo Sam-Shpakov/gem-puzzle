@@ -1,0 +1,33 @@
+.score {
+  display: flex;
+  justify-content: space-between;
+
+  .score-container {
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    background: #1890ff;
+  }
+
+  .time {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    .time-container {
+      text-transform: lowercase;
+    }
+  }
+
+  .move {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
