@@ -6,14 +6,15 @@ import './score.scss';
 
 type Props = {
   score: number;
+  moves: number;
 };
 
-export const Score: React.FC<Props> = ({ score }) => {
+export const Score: React.FC<Props> = ({ score, moves }) => {
 
   const nameButton = 'Undo';
 
   return (
-    <div className="score">
+    <div className="score" >
       <Button type="primary" size="large">
         <UndoOutlined /> {nameButton}
       </Button>
@@ -24,7 +25,7 @@ export const Score: React.FC<Props> = ({ score }) => {
         </div>
         <div className="move">
           <span>moves</span>
-          <span>0</span>
+          <span>{moves}</span>
         </div>
       </div>
     </div>

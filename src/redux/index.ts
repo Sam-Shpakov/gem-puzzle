@@ -1,5 +1,5 @@
 import reducer from './reducer';
-export { addArticle, removeArticle, simulateHttpRequest } from './actions';
+export { addMoves, changeSize } from './actions';
 
 export { reducer };
 

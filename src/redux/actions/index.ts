@@ -1,1 +1,4 @@
-export { addArticle, removeArticle, simulateHttpRequest } from './action';
+import * as actionTypes from './actionTypes';
+export { changeSize, addMoves } from './action';
+
+export { actionTypes };

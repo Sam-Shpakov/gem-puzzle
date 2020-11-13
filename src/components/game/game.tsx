@@ -8,16 +8,26 @@ import Controls from '../controls';
 
 type Props = {
   board: number[][];
+  size: number;
+  moves: number;
   pos: number[];
-  move: () => void;
+  move: (index: number) => void;
+  solveTask: () => void;
 };
 
-export const Game: React.FC<Props> = ({ board, pos, move }) => {
+export const Game: React.FC<Props> = ({
+  board,
+  moves,
+  size,
+  pos,
+  move,
+  solveTask,
+}) => {
   return (
     <div className="game">
-      <Score score={0} />
-      <GameContainer board={board} pos={pos} move={move} />
-      <Controls isGame={false} />
+      <Score score={0} moves={moves} />
+      <GameContainer board={board} size={size} pos={pos} move={move} />
+      <Controls isGame={false} solveTask={solveTask}/>
     </div>
   );
 };

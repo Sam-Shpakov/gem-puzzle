@@ -1,44 +1,39 @@
-import * as actionTypes from '../actions/actionTypes';
+import { actionTypes } from '../actions';
+import { getNewBoard, shuffle } from '../../utils';
 
-const initialState: ArticleState = {
-  articles: [
-    {
-      id: 1,
-      title: 'post 1',
-      body:
-        'Quisque cursus, metus vitae pharetra Nam libero tempore, cum soluta nobis est eligendi',
-    },
-    {
-      id: 2,
-      title: 'post 2',
-      body:
-        'Harum quidem rerum facilis est et expedita distinctio quas molestias excepturi sint',
-    },
-  ],
+const buf = shuffle(getNewBoard(4, 4), 15, 16);
+export const initialState: IGame = {
+  moves: 0,
+  size: 4,
+  shuffling: false,
+  timeGame: ' ',
+  boardState: buf.boardAfterMove,
+  solutionPath: buf.solutionPath,
+  solvedBoard: getNewBoard(4, 4),
 };
 
-const reducer = (
-  state: ArticleState = initialState,
-  action: ArticleAction
-): ArticleState => {
+const reducer = (state: IGame = initialState, action: GameAction): IGame => {
   switch (action.type) {
-    case actionTypes.ADD_ARTICLE:
-      const newArticle: IArticle = {
-        id: Math.random(), // not really unique but it's just an example
-        title: action.article.title,
-        body: action.article.body,
-      };
+    case actionTypes.ADD_MOVES:
       return {
         ...state,
-        articles: state.articles.concat(newArticle),
+        moves: action.payload.moves,
+        boardState: action.payload.boardState,
       };
-    case actionTypes.REMOVE_ARTICLE:
-      const updatedArticles: IArticle[] = state.articles.filter(
-        (article) => article.id !== action.article.id
-      );
+    case actionTypes.SOLVE_PUZZLE:
       return {
         ...state,
-        articles: updatedArticles,
+        moves: action.payload.moves,
+        boardState: action.payload.boardState,
+      };
+    case actionTypes.CHANGE_SIZE:
+      return {
+        ...state,
+        moves: 0,
+        size: action.payload.size,
+        boardState: action.payload.boardState,
+        solutionPath: action.payload.solutionPath,
+        solvedBoard: getNewBoard(action.payload.size, action.payload.size),
       };
   }
   return state;

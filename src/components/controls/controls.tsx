@@ -5,10 +5,10 @@ import './controls.scss';
 
 type Props = {
   isGame: boolean;
+  solveTask: () => void;
 };
 
-export const Controls: React.FC<Props> = ({ isGame }) => {
-
+export const Controls: React.FC<Props> = ({ isGame, solveTask }) => {
   let nameButtonOne = isGame ? 'Pause' : 'Start';
   let nameButtonTwo = 'New Game';
   return (
@@ -16,7 +16,13 @@ export const Controls: React.FC<Props> = ({ isGame }) => {
       <Button type="primary" size="large">
         {nameButtonOne}
       </Button>
-      <Button type="primary" size="large">
+      <Button
+        type="primary"
+        size="large"
+        onClick={() => {
+          solveTask();
+        }}
+      >
         {nameButtonTwo}
       </Button>
     </div>

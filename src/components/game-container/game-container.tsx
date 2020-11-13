@@ -5,17 +5,27 @@ import Cell from '../cell';
 
 type Props = {
   board: number[][];
+  size: number;
   pos: number[];
-  move: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  move: (index: number) => void;
 };
 
-export const GameContainer: React.FC<Props> = ({ board, pos, move }) => {
+export const GameContainer: React.FC<Props> = ({ board, size, pos, move }) => {
   const img =
-    'https://raw.githubusercontent.com/irinainina/image-data/master/box/100.jpg';
+    'https://raw.githubusercontent.com/irinainina/image-data/master/box/1.jpg';
   return (
     <div className="game-container">
       {board.slice(0, -1).map((pos, index) => (
-        <Cell img={img} index={index} pos={pos} onClick={move} key={index} />
+        <Cell
+          img={img}
+          index={index}
+          size={size}
+          pos={pos}
+          onClick={() => {
+            move(index);
+          }}
+          key={index}
+        />
       ))}
     </div>
   );

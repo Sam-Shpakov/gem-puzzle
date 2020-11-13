@@ -1,3 +1,20 @@
-import { getNewBoard } from './random/random';
+import { getNewBoard, randomNumber } from './random/random';
+import {
+  shuffle,
+  moveCell,
+  canMoveСell,
+  isSolved,
+  moveInDirection,
+  solvePath,
+} from './common/common';
 
-export default getNewBoard;
+export {
+  moveInDirection,
+  getNewBoard,
+  randomNumber,
+  shuffle,
+  moveCell,
+  canMoveСell,
+  isSolved,
+  solvePath,
+};
