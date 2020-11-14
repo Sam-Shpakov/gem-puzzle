@@ -7,35 +7,54 @@ import './game-app.scss';
 import Game from '../game';
 import Header from '../header';
 import Instruction from '../instruction';
-import { addMoves } from '../../redux';
-import { moveCell, moveInDirection, solvePath } from '../../utils';
+import { addMoves, solvePuzzle } from '../../redux';
+import { moveCell, moveInDirection } from '../../utils';
 
 export const GameApp: React.FC = () => {
   const game: IGame = useSelector((state: IGame) => state, shallowEqual);
   const dispatch: Dispatch = useDispatch();
   const emptyCell = game.size * game.size - 1;
-  console.log(game);
   const changeGameState = React.useCallback(
     (game: IGame) => dispatch(addMoves(game)),
     [dispatch]
   );
 
-  const solveTask = () => {
-    game.solutionPath.forEach((element) => {
+  const solvePuzzleTask = React.useCallback(
+    (game: IGame) => dispatch(solvePuzzle(game)),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    console.log('useEffect');
+    if (game.isSolution && game.moves < game.solutionPath.length) {
       const buf = moveInDirection(
-        element,
+        game.solutionPath[game.moves],
         game.boardState,
         emptyCell,
         emptyCell + 1,
+        game.moves,
         false
       );
-      console.log(buf);
+
+      setTimeout(() => {
+        changeGameState({
+          ...game,
+          boardState: buf.boardAfterMove,
+          moves: buf.moves,
+        });
+      }, 150);
+    } else if (game.isSolution) {
       changeGameState({
         ...game,
-        boardState: buf.boardAfterMove,
-        moves: buf.moves,
+        isSolution: false,
       });
-      setTimeout(() => {}, 1000);
+    }
+  });
+
+  const solveTask = () => {
+    solvePuzzleTask({
+      ...game,
+      isSolution: true,
     });
   };
 

@@ -1,4 +1,4 @@
 import * as actionTypes from './actionTypes';
-export { changeSize, addMoves } from './action';
+export { changeSize, addMoves, solvePuzzle } from './action';
 
 export { actionTypes };

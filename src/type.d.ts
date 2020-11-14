@@ -4,6 +4,7 @@ interface IGame {
   shuffling: boolean;
   timeGame: string;
   solutionPath: string[];
+  isSolution: boolean;
   boardState: number[][];
   solvedBoard: number[][];
 }

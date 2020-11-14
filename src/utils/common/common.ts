@@ -7,10 +7,11 @@ export const shuffle = (
 ) => {
   const moveDirections = ['up', 'down', 'left', 'right'];
   const antiMoveDirections = ['down', 'up', 'right', 'left'];
-  const shuffleMovesRange = [60, 80];
+  const shuffleMovesRange = [5 * board.length, 6 * board.length];
   let boardAfterMove = board;
-  // let shuffleMoves = randomNumber(shuffleMovesRange[0], shuffleMovesRange[1]);
-  let shuffleMoves = 2;
+  let shuffleMoves = randomNumber(shuffleMovesRange[0], shuffleMovesRange[1]);
+  console.log(shuffleMoves);
+  // let shuffleMoves = 5;
   let solutionPath: string[] = [];
   let shuffling = true;
   while (shuffleMoves > 0) {
@@ -20,9 +21,14 @@ export const shuffle = (
       boardAfterMove,
       emptyCell,
       numCell,
+      0,
       shuffling
     ).boardAfterMove;
-    if (!isSolved(bufBoardAfterMove, boardAfterMove, numCell)) {
+    if (
+      !isSolved(bufBoardAfterMove, boardAfterMove, numCell) &&
+      (solutionPath.length === 0 ||
+        solutionPath[solutionPath.length - 1] !== moveDirections[buf])
+    ) {
       solutionPath.push(antiMoveDirections[buf]);
       boardAfterMove = bufBoardAfterMove;
       shuffleMoves--;
@@ -33,23 +39,12 @@ export const shuffle = (
   return { boardAfterMove, solutionPath };
 };
 
-export const solvePath = (
-  solutionPath: string[],
-  board: number[][],
-  emptyCell: number,
-  numCell: number
-) => {
-  console.log('test');
-  solutionPath.forEach((element) => {
-    moveInDirection(element, board, emptyCell, numCell, false);
-  });
-};
-
 export const moveInDirection = (
   dir: string,
   board: number[][],
   emptyCell: number,
   numCell: number,
+  moves: number,
   shuffling: boolean
 ) => {
   const epos = board[emptyCell];
@@ -70,7 +65,7 @@ export const moveInDirection = (
       break;
     }
   }
-  return moveCell(tileToMove, board, emptyCell, 0, shuffling);
+  return moveCell(tileToMove, board, emptyCell, moves, shuffling);
 };
 
 export const isSolved = (

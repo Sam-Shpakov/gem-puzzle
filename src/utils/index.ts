@@ -5,7 +5,6 @@ import {
   canMoveСell,
   isSolved,
   moveInDirection,
-  solvePath,
 } from './common/common';
 
 export {
@@ -16,5 +15,4 @@ export {
   moveCell,
   canMoveСell,
   isSolved,
-  solvePath,
 };

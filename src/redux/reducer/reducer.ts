@@ -7,6 +7,7 @@ export const initialState: IGame = {
   size: 4,
   shuffling: false,
   timeGame: ' ',
+  isSolution: false,
   boardState: buf.boardAfterMove,
   solutionPath: buf.solutionPath,
   solvedBoard: getNewBoard(4, 4),
@@ -23,8 +24,8 @@ const reducer = (state: IGame = initialState, action: GameAction): IGame => {
     case actionTypes.SOLVE_PUZZLE:
       return {
         ...state,
-        moves: action.payload.moves,
         boardState: action.payload.boardState,
+        isSolution: action.payload.isSolution,
       };
     case actionTypes.CHANGE_SIZE:
       return {
@@ -32,6 +33,7 @@ const reducer = (state: IGame = initialState, action: GameAction): IGame => {
         moves: 0,
         size: action.payload.size,
         boardState: action.payload.boardState,
+        isSolution: false,
         solutionPath: action.payload.solutionPath,
         solvedBoard: getNewBoard(action.payload.size, action.payload.size),
       };
