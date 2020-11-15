@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
+import { message } from 'antd';
 
 import './game.scss';
 import Score from '../score';
@@ -9,7 +10,11 @@ import GameContainer from '../game-container';
 import Controls from '../controls';
 import {
   addMoves,
+  changeModalRules,
+  changeModalScores,
+  changeSound,
   newGame,
+  openSavedGame,
   pauseGame,
   solvePuzzle,
   updateTime,
@@ -42,6 +47,26 @@ export const Game: React.FC = () => {
 
   const newPuzzle = React.useCallback(
     (game: IGame) => dispatch(newGame(game)),
+    [dispatch]
+  );
+
+  const soundChange = React.useCallback(
+    (game: IGame) => dispatch(changeSound(game)),
+    [dispatch]
+  );
+
+  const openGame = React.useCallback(
+    (game: IGame) => dispatch(openSavedGame(game)),
+    [dispatch]
+  );
+
+  const changeScores = React.useCallback(
+    (game: IGame) => dispatch(changeModalScores(game)),
+    [dispatch]
+  );
+
+  const changeRules = React.useCallback(
+    (game: IGame) => dispatch(changeModalRules(game)),
     [dispatch]
   );
 
@@ -96,6 +121,12 @@ export const Game: React.FC = () => {
         boardState: buf.boardAfterMove,
         moves: buf.moves,
       });
+      if (game.isSound) {
+        let audio = new Audio(
+          'https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/boom.wav'
+        );
+        audio.play();
+      }
     }
   };
 
@@ -114,20 +145,56 @@ export const Game: React.FC = () => {
   };
 
   const saveGame = () => {
-    console.log('Save');
-    // localStorage.setItem('rememberMe', game.boardState);
+    localStorage.setItem(`currentGame${game.size}`, JSON.stringify(game));
+    message.success('Save game');
   };
 
-  const openBestScores = () => {
-    console.log('openBestScores');
+  const savedGameOpen = () => {
+    const currentGame = localStorage.getItem(`currentGame${game.size}`);
+    if (currentGame !== null) {
+      let oldGame: IGame = JSON.parse(currentGame);
+      openGame({
+        ...oldGame,
+      });
+    } else {
+      message.info('Not save game');
+    }
   };
+
+  const openModalScores = (isScores: boolean) => {
+    changeScores({
+      ...game,
+      isScores: isScores,
+    });
+  };
+
+  const openModalRules = (isRules: boolean) => {
+    changeRules({
+      ...game,
+      isRules: isRules,
+    });
+  };
+
+  const isSound = () => {
+    soundChange({
+      ...game,
+    });
+  };
+
   return (
     <div className="game">
       <Score
         time={game.timeGame}
         moves={game.moves}
+        isSound={game.isSound}
+        isScores={game.isScores}
+        isRules={game.isRules}
+        scoresBest={game.scoresBest}
         saveGame={saveGame}
-        openBestScores={openBestScores}
+        openSavedGame={savedGameOpen}
+        openModalScores={openModalScores}
+        openModalRules={openModalRules}
+        changeSound={isSound}
       />
       <GameContainer
         board={game.boardState}

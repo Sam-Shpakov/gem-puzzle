@@ -6,6 +6,10 @@ export {
   updateTime,
   pauseGame,
   newGame,
+  changeSound,
+  openSavedGame,
+  changeModalScores,
+  changeModalRules,
 } from './action';
 
 export { actionTypes };
