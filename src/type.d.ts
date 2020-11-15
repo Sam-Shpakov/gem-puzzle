@@ -2,7 +2,8 @@ interface IGame {
   moves: number;
   size: number;
   shuffling: boolean;
-  timeGame: string;
+  timeGame: number;
+  isGame: boolean;
   solutionPath: string[];
   isSolution: boolean;
   boardState: number[][];

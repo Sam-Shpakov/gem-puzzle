@@ -1,5 +1,12 @@
 import reducer from './reducer';
-export { addMoves, changeSize, solvePuzzle } from './actions';
+export {
+  addMoves,
+  changeSize,
+  solvePuzzle,
+  updateTime,
+  pauseGame,
+  newGame,
+} from './actions';
 
 export { reducer };
 

@@ -7,11 +7,9 @@ export const shuffle = (
 ) => {
   const moveDirections = ['up', 'down', 'left', 'right'];
   const antiMoveDirections = ['down', 'up', 'right', 'left'];
-  const shuffleMovesRange = [5 * board.length, 6 * board.length];
+  const shuffleMovesRange = [4 * board.length, 5 * board.length];
   let boardAfterMove = board;
   let shuffleMoves = randomNumber(shuffleMovesRange[0], shuffleMovesRange[1]);
-  console.log(shuffleMoves);
-  // let shuffleMoves = 5;
   let solutionPath: string[] = [];
   let shuffling = true;
   while (shuffleMoves > 0) {
