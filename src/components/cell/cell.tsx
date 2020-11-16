@@ -3,20 +3,26 @@ import './cell.scss';
 
 type Props = {
   img: string;
+  sizePx: number;
   size: number;
   index: number;
   pos: number[];
   onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-export const Cell: React.FC<Props> = ({ img, size, index, pos, onClick }) => {
-  const sizePx = 400;
+export const Cell: React.FC<Props> = ({
+  img,
+  size,
+  sizePx,
+  index,
+  pos,
+  onClick,
+}) => {
   const top = (pos[0] * sizePx) / size + 5;
   const left = (pos[1] * sizePx) / size + 5;
   const bgLeft = ((index % size) * sizePx) / size + 5;
   const bgTop = (Math.floor(index / size) * sizePx) / size + 5;
   let classes = ['cell'];
-
   return (
     <div
       className={classes.join(' ')}

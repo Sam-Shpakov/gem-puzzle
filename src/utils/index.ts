@@ -4,6 +4,7 @@ import {
   moveCell,
   canMoveСell,
   isSolved,
+  updateSolutionPath,
   moveInDirection,
 } from './common/common';
 
@@ -11,6 +12,7 @@ export {
   moveInDirection,
   getNewBoard,
   randomNumber,
+  updateSolutionPath,
   shuffle,
   moveCell,
   canMoveСell,

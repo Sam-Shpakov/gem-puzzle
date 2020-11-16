@@ -3,13 +3,16 @@ import { Menu, Dropdown, Button, Modal, Table } from 'antd';
 import {
   SaveOutlined,
   SoundOutlined,
+  SaveFilled,
   MenuOutlined,
+  UnorderedListOutlined,
   NotificationOutlined,
   OrderedListOutlined,
 } from '@ant-design/icons';
 
 import './score.scss';
 import { useState } from 'react';
+import Timer from '../timer';
 
 type Props = {
   time: number;
@@ -49,7 +52,17 @@ export const Score: React.FC<Props> = ({
   const isOpenModal = isRules || isScores ? true : false;
   const modalTitle = isRules ? 'Rules' : 'Best scores';
 
-  const dataSource = scoresBest;
+  const dataSource = scoresBest.map((item, index) => {
+    return {
+      ...item,
+      time: `${Math.floor((item.time + 1) / 600)}${Math.floor(
+        (item.time + 1) / 60
+      )}:${Math.floor(((item.time + 1) / 10) % 6)}${Math.floor(
+        (item.time + 1) % 10
+      )}`,
+      key: index,
+    };
+  });
 
   const columns = [
     {
@@ -72,9 +85,10 @@ export const Score: React.FC<Props> = ({
 
   const modalContent = isRules ? (
     <>
+      <p>Для проверки статистики используете автозавершение.</p>
       <p>
-        The object of the puzzle is to place the tiles in order by making
-        sliding moves that use the empty space.
+        После завершении сбора пазла, для начала игры необходимо нажать новая
+        игра
       </p>
       <p>
         You can save your game and load it later. Or you can just use pause
@@ -110,7 +124,7 @@ export const Score: React.FC<Props> = ({
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="4" onClick={openSavedGame}>
-          <OrderedListOutlined />
+          <SaveFilled />
           {nameButtonFour}
         </Menu.Item>
         <Menu.Divider />
@@ -121,7 +135,7 @@ export const Score: React.FC<Props> = ({
             setVisible(false);
           }}
         >
-          <OrderedListOutlined />
+          <UnorderedListOutlined />
           {nameButtonFive}
         </Menu.Item>
       </Menu>
@@ -146,10 +160,7 @@ export const Score: React.FC<Props> = ({
   return (
     <div className="score">
       <div className="score-container">
-        <div className="time">
-          <span>time</span>
-          <span className="time-container">{time}s</span>
-        </div>
+        <Timer time={time} />
         <div className="move">
           <span>moves</span>
           <span>{moves}</span>

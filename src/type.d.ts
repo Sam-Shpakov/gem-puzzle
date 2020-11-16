@@ -1,5 +1,7 @@
 interface IGame {
+  img: string;
   moves: number;
+  movesSolution: number;
   size: number;
   shuffling: boolean;
   timeGame: number;

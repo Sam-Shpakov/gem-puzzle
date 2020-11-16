@@ -1,10 +1,15 @@
 import { actionTypes } from '../actions';
-import { getNewBoard, shuffle } from '../../utils';
+import { getNewBoard, randomNumber, shuffle } from '../../utils';
 
 const buf = shuffle(getNewBoard(4, 4), 15, 16);
 
 export const initialState: IGame = {
+  img: `https://raw.githubusercontent.com/irinainina/image-data/master/box/${randomNumber(
+    1,
+    120
+  )}.jpg`,
   moves: 0,
+  movesSolution: 0,
   size: 4,
   shuffling: false,
   timeGame: 0,
@@ -20,19 +25,22 @@ export const initialState: IGame = {
 };
 
 const reducer = (state: IGame = initialState, action: GameAction): IGame => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.ADD_MOVES:
       return {
         ...state,
-        isGame: true,
+        isGame: action.payload.isGame,
         moves: action.payload.moves,
+        movesSolution: action.payload.movesSolution,
         boardState: action.payload.boardState,
+        solutionPath: action.payload.solutionPath,
       };
     case actionTypes.SOLVE_PUZZLE:
       return {
         ...state,
-        timeGame: 0,
+        isGame: true,
+        moves: action.payload.moves + 1,
+        timeGame: action.payload.timeGame,
         boardState: action.payload.boardState,
         isSolution: action.payload.isSolution,
       };
@@ -60,6 +68,7 @@ const reducer = (state: IGame = initialState, action: GameAction): IGame => {
       return {
         ...state,
         isScores: action.payload.isScores,
+        scoresBest: action.payload.scoresBest,
       };
 
     case actionTypes.CHANGE_MODAL_RULES:
@@ -76,8 +85,13 @@ const reducer = (state: IGame = initialState, action: GameAction): IGame => {
       );
       return {
         ...state,
+        img: `https://raw.githubusercontent.com/irinainina/image-data/master/box/${randomNumber(
+          1,
+          120
+        )}.jpg`,
         timeGame: 0,
         moves: 0,
+        movesSolution: 0,
         isGame: false,
         isSolution: false,
         boardState: buf.boardAfterMove,

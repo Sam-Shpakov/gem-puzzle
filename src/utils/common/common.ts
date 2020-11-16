@@ -37,6 +37,25 @@ export const shuffle = (
   return { boardAfterMove, solutionPath };
 };
 
+export const updateSolutionPath = (
+  index: number,
+  solutionPath: string[],
+  board: number[][],
+  emptyCell: number,
+  numCell: number
+) => {
+  const epos = board[emptyCell];
+  const moveCell = board[index];
+  let dir = '';
+  if (moveCell[0] - epos[0] === 0) {
+    dir = moveCell[1] - epos[1] > 0 ? 'right' : 'left';
+  } else {
+    dir = moveCell[0] - epos[0] > 0 ? 'down' : 'up';
+  }
+  solutionPath.unshift(dir);
+  return solutionPath;
+};
+
 export const moveInDirection = (
   dir: string,
   board: number[][],
