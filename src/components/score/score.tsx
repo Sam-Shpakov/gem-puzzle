@@ -85,15 +85,16 @@ export const Score: React.FC<Props> = ({
 
   const modalContent = isRules ? (
     <>
-      <p>Для проверки статистики используете автозавершение.</p>
       <p>
-        После завершении сбора пазла, для начала игры необходимо нажать новая
-        игра
+        (Для проверяющих*) Для проверки статистики используете автозавершение.
       </p>
+      <p>Вы можете сохранить свою игру и загрузить ее позже используя меню.</p>
+      <p>Вы можете посмотреть 10 лучших работ</p>
       <p>
-        You can save your game and load it later. Or you can just use pause
-        button. Also you can choose game field size of color in Settings
+        Вы можете использовать паузу кнопка, чтобы продолжить игру просто
+        передвиньте фишку
       </p>
+      <p>Также вы можете выбрать размер игрового поля </p>
     </>
   ) : (
     <Table dataSource={dataSource} columns={columns} />
