@@ -1,16 +1,33 @@
-interface IArticle {
-  id: number;
-  title: string;
-  body: string;
+interface IGame {
+  img: string;
+  moves: number;
+  movesSolution: number;
+  size: number;
+  shuffling: boolean;
+  timeGame: number;
+  isSound: boolean;
+  isGame: boolean;
+  solutionPath: string[];
+  isSolution: boolean;
+  boardState: number[][];
+  solvedBoard: number[][];
+  isRules: boolean;
+  isScores: boolean;
+  scoresBest: Scores[];
 }
 
-type ArticleState = {
-  articles: IArticle[];
+type Scores = {
+  time: number;
+  moves: number;
 };
 
-type ArticleAction = {
+type GameState = {
+  games: IGame[];
+};
+
+type GameAction = {
   type: string;
-  article: IArticle;
+  payload: IGame;
 };
 
-type DispatchType = (args: ArticleAction) => ArticleAction;
+type DispatchType = (args: GameAction) => GameAction;

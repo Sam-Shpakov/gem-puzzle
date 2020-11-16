@@ -1,25 +1,18 @@
 import * as React from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import './game-app.scss';
 import Game from '../game';
 import Header from '../header';
 import Instruction from '../instruction';
 
-type Props = {
-  size: number;
-  board: number[][];
-};
-
-export const GameApp: React.FC<Props> = ({ size, board }) => {
-  const move = () => {
-    console.log('move');
-  };
-
+export const GameApp: React.FC = () => {
+  const game: IGame = useSelector((state: IGame) => state, shallowEqual);
   return (
     <div className="game-app">
       <Header />
-      <Game board={board} pos={board[0]} move={move} />
-      <Instruction size={size} />
+      <Game />
+      <Instruction size={game.size} />
     </div>
   );
 };

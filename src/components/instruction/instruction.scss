@@ -5,6 +5,10 @@
   &__content {
     display: flex;
     width: 268px;
+
+    @media (max-width: 415px) {
+      width: 168px;
+    }
   }
 
   &__icons {
