@@ -1,5 +1,16 @@
 import reducer from './reducer';
-export { addArticle, removeArticle, simulateHttpRequest } from './actions';
+export {
+  addMoves,
+  changeSize,
+  solvePuzzle,
+  updateTime,
+  pauseGame,
+  newGame,
+  changeSound,
+  openSavedGame,
+  changeModalRules,
+  changeModalScores,
+} from './actions';
 
 export { reducer };
 

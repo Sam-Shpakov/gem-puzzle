@@ -1,0 +1,27 @@
+.game-container {
+  width: 405px;
+  height: 405px;
+  position: relative;
+  background: #ddd;
+  margin: 10px 0;
+  overflow: hidden;
+
+  @media (max-width: 415px) {
+    width: 305px;
+    height: 305px;
+  }
+}
+
+.disabled-game:before {
+  content: '';
+  position: fixed;
+  height: 405px;
+  width: 405px;
+  background: rgba(0, 0, 0, 0);
+  z-index: 100;
+
+  @media (max-width: 415px) {
+    width: 305px;
+    height: 305px;
+  }
+}

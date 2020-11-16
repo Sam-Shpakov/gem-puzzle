@@ -1,30 +1,18 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 
 import './game-app.scss';
 import Game from '../game';
 import Header from '../header';
 import Instruction from '../instruction';
 
-type Props = {
-  // article: IArticle;
-  // removeArticle: (article: IArticle) => void;
-};
-
-export const GameApp: React.FC<Props> = (/*{ article, removeArticle }*/) => {
-  // const dispatch: Dispatch<any> = useDispatch();
-
-  // const deleteArticle = React.useCallback(
-  //   (article: IArticle) => dispatch(removeArticle(article)),
-  //   [dispatch, removeArticle]
-  // );
-
+export const GameApp: React.FC = () => {
+  const game: IGame = useSelector((state: IGame) => state, shallowEqual);
   return (
     <div className="game-app">
       <Header />
       <Game />
-      <Instruction />
+      <Instruction size={game.size} />
     </div>
   );
 };
