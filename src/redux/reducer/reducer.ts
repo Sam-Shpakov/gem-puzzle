@@ -13,7 +13,7 @@ export const initialState: IGame = {
   size: 4,
   shuffling: false,
   timeGame: 0,
-  isSound: false,
+  isSound: true,
   isGame: false,
   isRules: false,
   isScores: false,
