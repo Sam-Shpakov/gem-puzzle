@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import './game-container.scss';
 import Cell from '../cell';
@@ -27,8 +28,23 @@ export const GameContainer: React.FC<Props> = ({
   let classes = isSolution
     ? ['game-container', 'disabled-game']
     : ['game-container'];
+
+  const [currentCard, setCurrentCard] = useState(-1);
+  const onDragOverHandler = (e) => {
+    e.preventDefault();
+  };
+  const onDropEmpryHandler = (e, index) => {
+    e.preventDefault();
+    if (e.target.className === 'game-container') {
+      move(index);
+    }
+  };
   return (
-    <div className={classes.join(' ')}>
+    <div
+      className={classes.join(' ')}
+      onDragOver={(e) => onDragOverHandler(e)}
+      onDrop={(e) => onDropEmpryHandler(e, currentCard)}
+    >
       {board.slice(0, -1).map((pos, index) => (
         <Cell
           img={game.img}
@@ -36,6 +52,7 @@ export const GameContainer: React.FC<Props> = ({
           size={size}
           sizePx={sizePx}
           pos={pos}
+          isIndex={setCurrentCard}
           onClick={() => {
             move(index);
           }}

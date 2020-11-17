@@ -28,7 +28,6 @@ import {
 
 export const Game: React.FC = () => {
   const game: IGame = useSelector((state: IGame) => state, shallowEqual);
-  console.log(game);
   const dispatch: Dispatch = useDispatch();
   const emptyCell = game.size * game.size - 1;
   const changeGameState = React.useCallback(
