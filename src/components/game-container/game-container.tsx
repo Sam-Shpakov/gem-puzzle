@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import { DragDropContext } from 'react-beautiful-dnd';
 
 import './game-container.scss';
 import Cell from '../cell';
