@@ -1,0 +1,12 @@
+.time {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  .time-container {
+    text-transform: lowercase;
+  }
+}
