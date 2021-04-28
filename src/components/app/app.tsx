@@ -43,6 +43,9 @@ const App: React.FC = () => {
       >
         <TabPane tab="3x3" key="3"></TabPane>
         <TabPane tab="4x4" key="4"></TabPane>
+        <TabPane tab="5x5" key="5"></TabPane>
+        <TabPane tab="6x6" key="6"></TabPane>
+        <TabPane tab="7x7" key="7"></TabPane>
         <TabPane tab="8x8" key="8"></TabPane>
       </Tabs>
       <GameApp />;
